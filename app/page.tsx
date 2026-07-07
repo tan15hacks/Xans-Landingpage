@@ -80,41 +80,41 @@ const values = [
   'Made for repeat wear',
 ];
 
-const premiumFeatures = [
+const brandStandards = [
   {
-    title: 'Conversion-ready structure',
+    title: 'Clean wardrobe system',
     description:
-      'Hero, proof points, visual storytelling, product highlights, offer section, FAQ-style messaging, and strong CTAs.',
+      'Every piece is designed to mix easily with the rest of the collection, keeping daily outfits simple and refined.',
   },
   {
-    title: 'Interactive front-end features',
+    title: 'Soft neutral palette',
     description:
-      'Search, category filters, cart drawer, quantity controls, toast notifications, mobile menu, and validated forms.',
+      'Cream, sand, stone, taupe, washed black, and muted tones create a calm signature look for everyday wear.',
   },
   {
-    title: 'Premium brand presentation',
+    title: 'Relaxed premium fit',
     description:
-      'Editorial imagery, polished spacing, refined typography, hover states, soft shadows, and luxury-inspired neutral styling.',
+      'Oversized tees, soft hoodies, structured pants, and boxy outerwear shaped for comfort without looking careless.',
   },
   {
-    title: 'Deployment-ready setup',
+    title: 'Drop-based releases',
     description:
-      'SEO metadata, Open Graph preview, sitemap, robots route, custom loading state, custom 404 page, and clean source code.',
+      'Small curated releases keep each collection focused, intentional, and easier to style from season to season.',
   },
 ];
 
-const caseStudyStats = [
-  { label: 'Responsive sections', value: '10+' },
-  { label: 'Interactive features', value: '8' },
-  { label: 'Target package', value: 'Premium' },
-  { label: 'Build focus', value: 'Conversion' },
+const collectionStats = [
+  { label: 'Essential pieces', value: '04' },
+  { label: 'Core colors', value: '06' },
+  { label: 'Season', value: '2026' },
+  { label: 'Release', value: 'Drop 01' },
 ];
 
-const projectProcess = [
-  'Clarify brand direction, target audience, and page goal.',
-  'Design a polished visual structure with premium spacing and hierarchy.',
-  'Build a responsive front-end with useful interactions and animations.',
-  'Prepare SEO, social preview, deployment files, and portfolio-ready docs.',
+const wardrobeSteps = [
+  'Start with a clean base layer in cream, stone, or washed black.',
+  'Add a relaxed hoodie or box jacket for structure and depth.',
+  'Balance the silhouette with utility pants or straight-fit bottoms.',
+  'Finish with one quiet accent so the whole outfit stays calm.',
 ];
 
 function formatPrice(value: number) {
@@ -221,7 +221,7 @@ export default function Home() {
       setEmail('');
       showToast(data.message ?? 'You are on the Xans drop list');
     } catch {
-      showToast('Newsletter demo is temporarily unavailable');
+      showToast('Sign-up is temporarily unavailable');
     }
   }
 
@@ -239,10 +239,10 @@ export default function Home() {
 
           <div className="hidden items-center gap-10 text-xs font-semibold uppercase tracking-[0.18em] text-muted lg:flex">
             <a href="#new">New Arrivals</a>
-            <a href="#features">Features</a>
+            <a href="#standard">The Standard</a>
             <a href="#lookbook">Lookbook</a>
-            <a href="#case-study">Case Study</a>
-            <a href="#story">Story</a>
+            <a href="#collection">Collection</a>
+            <a href="#story">Drop List</a>
           </div>
 
           <div className="flex items-center gap-4">
@@ -282,17 +282,17 @@ export default function Home() {
               <a href="#new" onClick={closeMobileMenu}>
                 New Arrivals
               </a>
-              <a href="#features" onClick={closeMobileMenu}>
-                Features
+              <a href="#standard" onClick={closeMobileMenu}>
+                The Standard
               </a>
               <a href="#lookbook" onClick={closeMobileMenu}>
                 Lookbook
               </a>
-              <a href="#case-study" onClick={closeMobileMenu}>
-                Case Study
+              <a href="#collection" onClick={closeMobileMenu}>
+                Collection
               </a>
               <a href="#story" onClick={closeMobileMenu}>
-                Story
+                Drop List
               </a>
             </div>
           </div>
@@ -303,10 +303,10 @@ export default function Home() {
         <div className="flex flex-col justify-center">
           <div className="mb-7 flex flex-wrap gap-3">
             <span className="rounded-full border border-ink/10 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              Premium Landing Page Package
+              2026 Essential Drop
             </span>
             <span className="rounded-full border border-ink/10 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              Interactive Front-End
+              Minimal Apparel
             </span>
           </div>
 
@@ -328,10 +328,10 @@ export default function Home() {
               Shop the drop <ArrowRight size={16} />
             </a>
             <a
-              href="#case-study"
+              href="#lookbook"
               className="inline-flex items-center justify-center rounded-full border border-ink px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] transition hover:-translate-y-0.5"
             >
-              View case study
+              View lookbook
             </a>
           </div>
         </div>
@@ -344,15 +344,15 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
           <div className="absolute left-6 top-6 rounded-full bg-cream/90 px-5 py-3 text-xs font-bold uppercase tracking-[0.24em]">
-            10/10 Premium Demo
+            Drop 01
           </div>
           <div className="absolute bottom-6 left-6 right-6 rounded-[2rem] border border-white/25 bg-cream/85 p-6 backdrop-blur-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-muted">
-              Client-ready package
+              Essential form
             </p>
             <div className="mt-3 flex items-end justify-between gap-6">
               <h2 className="text-3xl font-bold tracking-[-0.04em]">
-                Design, interactions, SEO, backend demo, deployment prep.
+                Soft silhouettes. Neutral impact.
               </h2>
               <Sparkles className="hidden text-ink sm:block" size={28} />
             </div>
@@ -362,40 +362,40 @@ export default function Home() {
 
       <section className="overflow-hidden bg-ink py-6 text-cream">
         <div className="marquee flex w-[200%] gap-12 whitespace-nowrap text-lg font-semibold uppercase tracking-[0.35em] opacity-90">
-          <span>Interactive Cart</span>
-          <span>Product Search</span>
-          <span>Email API</span>
-          <span>SEO Metadata</span>
-          <span>Custom 404</span>
-          <span>Open Graph</span>
-          <span>Interactive Cart</span>
-          <span>Product Search</span>
-          <span>Email API</span>
-          <span>SEO Metadata</span>
-          <span>Custom 404</span>
-          <span>Open Graph</span>
+          <span>New Essentials</span>
+          <span>Minimal Fits</span>
+          <span>Quiet Luxury</span>
+          <span>Everyday Form</span>
+          <span>Xans Studio</span>
+          <span>Soft Neutrals</span>
+          <span>New Essentials</span>
+          <span>Minimal Fits</span>
+          <span>Quiet Luxury</span>
+          <span>Everyday Form</span>
+          <span>Xans Studio</span>
+          <span>Soft Neutrals</span>
         </div>
       </section>
 
-      <section id="features" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <section id="standard" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="mb-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-muted">
-              Premium Package
+              The Xans Standard
             </p>
             <h2 className="mt-4 text-5xl font-bold leading-tight tracking-[-0.06em]">
-              Built like a client-ready landing page, not just a pretty mockup.
+              Designed for calm wardrobes and everyday confidence.
             </h2>
           </div>
           <p className="text-lg leading-8 text-muted">
-            This sample demonstrates what your premium Fiverr offer can include:
-            polished design, conversion structure, real front-end interactions,
-            SEO setup, social preview, and deployment-ready files.
+            Xans focuses on fewer pieces with stronger versatility: clean forms,
+            soft textures, neutral tones, and silhouettes that work across the
+            week without feeling repetitive.
           </p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {premiumFeatures.map((feature, index) => (
+          {brandStandards.map((feature, index) => (
             <article
               key={feature.title}
               className="rounded-[2rem] border border-ink/10 bg-white/55 p-7 shadow-sm transition hover:-translate-y-2 hover:shadow-soft"
@@ -426,9 +426,8 @@ export default function Home() {
             Aesthetic pieces styled for everyday motion.
           </h2>
           <p className="mt-6 max-w-md text-lg leading-8 text-muted">
-            Editorial product storytelling for a calm, premium clothing brand.
-            Replace these visuals with real campaign images once the brand has
-            product photography.
+            A visual direction built on comfortable essentials, quiet contrast,
+            and minimal styling that feels polished without being loud.
           </p>
         </div>
 
@@ -468,8 +467,8 @@ export default function Home() {
             </h2>
           </div>
           <p className="max-w-md text-sm leading-6 text-muted">
-            Search, filter, and add products to the interactive cart. This turns
-            the landing page into a stronger premium front-end sample.
+            Explore the first Xans release by category, style, and everyday fit.
+            Add pieces to your bag and build a clean rotation.
           </p>
         </div>
 
@@ -522,7 +521,7 @@ export default function Home() {
                   onClick={() => addToCart(product)}
                   className="absolute bottom-5 left-5 right-5 inline-flex items-center justify-center gap-2 rounded-full bg-cream px-5 py-4 text-xs font-bold uppercase tracking-[0.18em] text-ink opacity-0 shadow-soft transition group-hover:translate-y-0 group-hover:opacity-100"
                 >
-                  Add to cart <Plus size={15} />
+                  Add to bag <Plus size={15} />
                 </button>
               </div>
               <div className="mt-5 flex items-start justify-between gap-4">
@@ -606,25 +605,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="case-study" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
         <div className="overflow-hidden rounded-[2.5rem] bg-ink text-cream shadow-soft">
           <div className="grid gap-10 p-8 sm:p-12 lg:grid-cols-[0.9fr_1.1fr] lg:p-16">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.28em] text-sand">
-                Portfolio Case Study
+                Collection Notes
               </p>
               <h2 className="mt-5 text-5xl font-bold leading-tight tracking-[-0.06em]">
-                From brand idea to premium interactive landing page.
+                Built around fewer decisions and better everyday pieces.
               </h2>
               <p className="mt-6 text-lg leading-8 text-sand">
-                Xans was created as a portfolio-grade example of a client-ready
-                premium landing page package for fashion, product, app, SaaS, or
-                brand launches.
+                The first Xans drop keeps the wardrobe focused: essential tops,
+                soft layers, structured bottoms, and clean outerwear made for
+                repeated wear.
               </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              {caseStudyStats.map((stat) => (
+              {collectionStats.map((stat) => (
                 <div
                   key={stat.label}
                   className="rounded-[2rem] border border-cream/10 bg-cream/10 p-6"
@@ -641,13 +640,13 @@ export default function Home() {
           </div>
 
           <div className="grid border-t border-cream/10 lg:grid-cols-4">
-            {projectProcess.map((step, index) => (
+            {wardrobeSteps.map((step, index) => (
               <div
                 key={step}
                 className="border-cream/10 p-8 lg:border-r last:lg:border-r-0"
               >
                 <p className="text-sm font-bold uppercase tracking-[0.22em] text-sand">
-                  Step {index + 1}
+                  Style {index + 1}
                 </p>
                 <p className="mt-4 leading-7 text-cream/90">{step}</p>
               </div>
@@ -743,12 +742,12 @@ export default function Home() {
         className={`fixed right-0 top-0 z-[90] flex h-full w-full max-w-md flex-col bg-cream shadow-soft transition duration-500 ${
           cartOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        aria-label="Shopping cart drawer"
+        aria-label="Shopping bag drawer"
       >
         <div className="flex items-center justify-between border-b border-ink/10 p-6">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-muted">
-              Shopping Cart
+              Shopping Bag
             </p>
             <h3 className="mt-2 text-2xl font-bold tracking-[-0.04em]">
               {cartCount} {cartCount === 1 ? 'item' : 'items'} selected
@@ -758,7 +757,7 @@ export default function Home() {
             type="button"
             onClick={() => setCartOpen(false)}
             className="rounded-full border border-ink/10 p-3"
-            aria-label="Close cart"
+            aria-label="Close bag"
           >
             <X size={18} />
           </button>
@@ -768,10 +767,10 @@ export default function Home() {
           {cartItems.length === 0 ? (
             <div className="rounded-[2rem] border border-ink/10 bg-white/60 p-8 text-center">
               <ShoppingBag className="mx-auto text-muted" size={34} />
-              <p className="mt-4 text-lg font-semibold">Your cart is empty.</p>
+              <p className="mt-4 text-lg font-semibold">Your bag is empty.</p>
               <p className="mt-2 text-sm leading-6 text-muted">
-                Add products from the new arrivals section to preview the
-                premium cart drawer experience.
+                Add essentials from the new arrivals section and build your Xans
+                rotation.
               </p>
             </div>
           ) : (
@@ -848,17 +847,16 @@ export default function Home() {
             onClick={() =>
               showToast(
                 cartCount > 0
-                  ? 'Checkout preview only for this portfolio demo'
+                  ? 'Checkout opens soon for the next Xans drop'
                   : 'Add an item before checkout',
               )
             }
             className="w-full rounded-full bg-ink px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-cream"
           >
-            Checkout Preview
+            Continue to checkout
           </button>
           <p className="mt-4 text-center text-xs leading-5 text-muted">
-            Demo cart UI for front-end portfolio presentation. Payment is not
-            connected.
+            Checkout will open when the next Xans release goes live.
           </p>
         </div>
       </aside>
