@@ -1,0 +1,11 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1100" fill="#EEEAE2"/>
+  <circle cx="220" cy="200" r="220" fill="#D8CDBD" opacity="0.45"/>
+  <circle cx="760" cy="890" r="260" fill="#C8BBAA" opacity="0.35"/>
+  <path d="M354 236c44-42 148-42 192 0l62 74 118 62-66 154-70-32v350H310V494l-70 32-66-154 118-62 62-74Z" fill="#C8BBAA"/>
+  <path d="M362 238c46 48 130 48 176 0" stroke="#F7F4EC" stroke-width="26" stroke-linecap="round"/>
+  <path d="M384 592h132c22 0 40 18 40 40v74H344v-74c0-22 18-40 40-40Z" fill="#B7AA9B" opacity="0.9"/>
+  <rect x="250" y="868" width="400" height="76" rx="38" fill="#111111"/>
+  <text x="312" y="917" fill="#F7F4EC" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="5">SAND HOODIE</text>
+  <text x="278" y="980" fill="#6F6A61" font-family="Arial, sans-serif" font-size="18">Warm neutral layer / soft shape</text>
+</svg>
