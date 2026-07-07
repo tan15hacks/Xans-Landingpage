@@ -31,12 +31,12 @@ type CartItem = Product & {
 const imageFilter = 'h-full w-full object-cover';
 
 const imagery = {
-  hero: '/xans-hero.svg',
-  rack: '/xans-hero.svg',
-  tee: '/xans-product-tee.svg',
-  hoodie: '/xans-product-hoodie.svg',
-  pants: '/xans-product-pants.svg',
-  jacket: '/xans-product-jacket.svg',
+  hero: '/model-1.png',
+  rack: '/rack.png',
+  tee: '/t-shirt.png',
+  hoodie: '/hoodie.png',
+  pants: '/pants.png',
+  jacket: '/jacket.png',
 };
 
 const products: Product[] = [
@@ -644,7 +644,7 @@ export default function Home() {
       <section id="story" className="bg-ink px-5 py-20 text-cream lg:px-8 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-12">
           <div className="relative h-[360px] overflow-hidden rounded-[1.6rem] bg-sand sm:h-[420px] sm:rounded-[2rem]">
-            <img src={imagery.hero} alt="Neutral wardrobe editorial" className={imageFilter} />
+            <img src={imagery.rack} alt="Neutral wardrobe editorial" className={imageFilter} />
           </div>
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-sand">
