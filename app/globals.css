@@ -1,6 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #111111;
+  --color-cream: #f7f4ec;
+  --color-stone: #e8e4db;
+  --color-sand: #d8cdbd;
+  --color-taupe: #b7aa98;
+  --color-muted: #756f65;
+  --shadow-soft: 0 24px 80px rgba(17, 17, 17, 0.10);
+}
 
 :root {
   --ink: #111111;
