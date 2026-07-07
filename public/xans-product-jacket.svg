@@ -1,0 +1,12 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1100" fill="#E8E4DB"/>
+  <circle cx="190" cy="210" r="220" fill="#F7F4EC" opacity="0.7"/>
+  <circle cx="720" cy="880" r="260" fill="#D8CDBD" opacity="0.5"/>
+  <path d="M332 228h236l94 132-58 146-64-28v370H360V478l-64 28-58-146 94-132Z" fill="#111111" opacity="0.86"/>
+  <path d="M390 228c38 36 82 36 120 0" stroke="#D8CDBD" stroke-width="24" stroke-linecap="round"/>
+  <rect x="378" y="408" width="48" height="148" rx="20" fill="#D8CDBD" opacity="0.8"/>
+  <rect x="474" y="408" width="48" height="148" rx="20" fill="#D8CDBD" opacity="0.8"/>
+  <rect x="252" y="868" width="396" height="76" rx="38" fill="#F7F4EC"/>
+  <text x="304" y="917" fill="#111111" font-family="Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="5">BOX JACKET</text>
+  <text x="295" y="980" fill="#6F6A61" font-family="Arial, sans-serif" font-size="18">Quiet outerwear / clean structure</text>
+</svg>
