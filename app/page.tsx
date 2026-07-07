@@ -1,35 +1,77 @@
-import { ArrowRight, Check, Menu, ShoppingBag, Sparkles } from 'lucide-react';
+'use client';
 
-const products = [
+import { FormEvent, useMemo, useState } from 'react';
+import {
+  ArrowRight,
+  Check,
+  Menu,
+  Minus,
+  Plus,
+  Search,
+  ShoppingBag,
+  Sparkles,
+  Trash2,
+  X,
+} from 'lucide-react';
+
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+  tag: string;
+  category: string;
+  description: string;
+  image: string;
+};
+
+type CartItem = Product & {
+  quantity: number;
+};
+
+const products: Product[] = [
   {
+    id: 1,
     name: 'Core Oversized Tee',
-    price: '$38',
+    price: 38,
     tag: 'New',
+    category: 'Tees',
+    description: 'Heavy-soft cotton tee with a relaxed premium fit.',
     image:
       'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80',
   },
   {
+    id: 2,
     name: 'Sand Relaxed Hoodie',
-    price: '$68',
+    price: 68,
     tag: 'Drop',
+    category: 'Hoodies',
+    description: 'Warm neutral hoodie made for clean everyday layering.',
     image:
       'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80',
   },
   {
+    id: 3,
     name: 'Washed Utility Pants',
-    price: '$74',
+    price: 74,
     tag: 'Best',
+    category: 'Pants',
+    description: 'Soft structured pants with a minimal utility shape.',
     image:
       'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=80',
   },
   {
+    id: 4,
     name: 'Everyday Box Jacket',
-    price: '$89',
+    price: 89,
     tag: 'Limited',
+    category: 'Outerwear',
+    description: 'Boxy everyday jacket with quiet luxury styling.',
     image:
       'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
   },
 ];
+
+const categories = ['All', 'Tees', 'Hoodies', 'Pants', 'Outerwear'];
 
 const values = [
   'Minimal silhouettes',
@@ -38,7 +80,100 @@ const values = [
   'Made for repeat wear',
 ];
 
+function formatPrice(value: number) {
+  return `$${value.toFixed(0)}`;
+}
+
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [email, setEmail] = useState('');
+  const [toast, setToast] = useState('');
+
+  const filteredProducts = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+
+    return products.filter((product) => {
+      const matchesCategory =
+        activeCategory === 'All' || product.category === activeCategory;
+      const matchesSearch =
+        !query ||
+        product.name.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query);
+
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeCategory, searchQuery]);
+
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const cartTotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
+
+  function showToast(message: string) {
+    setToast(message);
+    window.setTimeout(() => setToast(''), 2600);
+  }
+
+  function addToCart(product: Product) {
+    setCartItems((current) => {
+      const existing = current.find((item) => item.id === product.id);
+
+      if (existing) {
+        return current.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        );
+      }
+
+      return [...current, { ...product, quantity: 1 }];
+    });
+
+    setCartOpen(true);
+    showToast(`${product.name} added to cart`);
+  }
+
+  function updateCartQuantity(id: number, change: number) {
+    setCartItems((current) =>
+      current
+        .map((item) =>
+          item.id === id
+            ? { ...item, quantity: Math.max(0, item.quantity + change) }
+            : item,
+        )
+        .filter((item) => item.quantity > 0),
+    );
+  }
+
+  function removeFromCart(id: number) {
+    setCartItems((current) => current.filter((item) => item.id !== id));
+    showToast('Item removed from cart');
+  }
+
+  function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+    if (!validEmail) {
+      showToast('Please enter a valid email address');
+      return;
+    }
+
+    setEmail('');
+    showToast('You are on the Xans drop list');
+  }
+
+  function closeMobileMenu() {
+    setMobileMenuOpen(false);
+  }
+
   return (
     <main className="min-h-screen bg-cream text-ink">
       <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/85 backdrop-blur-xl">
@@ -55,27 +190,64 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="hidden rounded-full border border-ink/15 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] lg:block">
+            <a
+              href="#new"
+              className="hidden rounded-full border border-ink/15 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] lg:inline-flex"
+            >
               Search
-            </button>
-            <button className="rounded-full bg-ink p-3 text-cream">
+            </a>
+            <button
+              type="button"
+              onClick={() => setCartOpen(true)}
+              className="relative rounded-full bg-ink p-3 text-cream"
+              aria-label="Open cart"
+            >
               <ShoppingBag size={18} />
+              {cartCount > 0 && (
+                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-sand text-xs font-bold text-ink">
+                  {cartCount}
+                </span>
+              )}
             </button>
-            <button className="lg:hidden">
-              <Menu size={24} />
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((open) => !open)}
+              className="lg:hidden"
+              aria-label="Toggle mobile menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </nav>
+
+        {mobileMenuOpen && (
+          <div className="border-t border-ink/10 bg-cream px-5 py-5 shadow-soft lg:hidden">
+            <div className="mx-auto grid max-w-7xl gap-4 text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+              <a href="#new" onClick={closeMobileMenu}>
+                New Arrivals
+              </a>
+              <a href="#lookbook" onClick={closeMobileMenu}>
+                Lookbook
+              </a>
+              <a href="#collection" onClick={closeMobileMenu}>
+                Collection
+              </a>
+              <a href="#story" onClick={closeMobileMenu}>
+                Story
+              </a>
+            </div>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 pb-20 pt-14 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:pb-28 lg:pt-20">
         <div className="flex flex-col justify-center">
           <div className="mb-7 flex flex-wrap gap-3">
             <span className="rounded-full border border-ink/10 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              2026 Essential Drop
+              Premium Landing Page Package
             </span>
             <span className="rounded-full border border-ink/10 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              Minimal Apparel
+              Interactive Front-End
             </span>
           </div>
 
@@ -131,20 +303,23 @@ export default function Home() {
 
       <section className="overflow-hidden bg-ink py-6 text-cream">
         <div className="marquee flex w-[200%] gap-12 whitespace-nowrap text-lg font-semibold uppercase tracking-[0.35em] opacity-90">
-          <span>New Essentials</span>
-          <span>Minimal Fits</span>
-          <span>Quiet Luxury</span>
-          <span>Everyday Form</span>
-          <span>Xans Studio</span>
-          <span>New Essentials</span>
-          <span>Minimal Fits</span>
-          <span>Quiet Luxury</span>
-          <span>Everyday Form</span>
-          <span>Xans Studio</span>
+          <span>Interactive Cart</span>
+          <span>Product Search</span>
+          <span>Email Validation</span>
+          <span>Mobile Menu</span>
+          <span>Premium Animations</span>
+          <span>Interactive Cart</span>
+          <span>Product Search</span>
+          <span>Email Validation</span>
+          <span>Mobile Menu</span>
+          <span>Premium Animations</span>
         </div>
       </section>
 
-      <section id="lookbook" className="mx-auto grid max-w-7xl gap-10 px-5 py-24 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+      <section
+        id="lookbook"
+        className="mx-auto grid max-w-7xl gap-10 px-5 py-24 lg:grid-cols-[0.8fr_1.2fr] lg:px-8"
+      >
         <div className="flex flex-col justify-center">
           <p className="text-xs font-bold uppercase tracking-[0.28em] text-muted">
             Lookbook Preview
@@ -185,7 +360,7 @@ export default function Home() {
       </section>
 
       <section id="new" className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-muted">
               New Arrivals
@@ -194,17 +369,47 @@ export default function Home() {
               Latest essentials
             </h2>
           </div>
-          <a
-            href="#"
-            className="text-sm font-bold uppercase tracking-[0.22em] underline underline-offset-8"
-          >
-            View all products
-          </a>
+          <p className="max-w-md text-sm leading-6 text-muted">
+            Search, filter, and add products to the interactive cart. This turns
+            the landing page into a stronger premium front-end sample.
+          </p>
+        </div>
+
+        <div className="mb-10 grid gap-4 rounded-[2rem] border border-ink/10 bg-white/55 p-4 shadow-sm md:grid-cols-[1fr_auto] md:items-center">
+          <label className="relative block">
+            <Search
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-muted"
+              size={18}
+            />
+            <input
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Search products, categories, or details..."
+              className="h-14 w-full rounded-full border border-ink/10 bg-cream pl-12 pr-5 text-sm outline-none transition focus:border-ink/30"
+            />
+          </label>
+
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setActiveCategory(category)}
+                className={`rounded-full px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] transition ${
+                  activeCategory === category
+                    ? 'bg-ink text-cream'
+                    : 'border border-ink/10 bg-cream text-muted'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            <article key={product.name} className="group">
+          {filteredProducts.map((product) => (
+            <article key={product.id} className="group">
               <div className="relative h-[390px] overflow-hidden rounded-[2rem] bg-stone shadow-sm">
                 <img
                   src={product.image}
@@ -214,6 +419,13 @@ export default function Home() {
                 <span className="absolute left-5 top-5 rounded-full bg-cream px-4 py-2 text-xs font-bold uppercase tracking-[0.2em]">
                   {product.tag}
                 </span>
+                <button
+                  type="button"
+                  onClick={() => addToCart(product)}
+                  className="absolute bottom-5 left-5 right-5 inline-flex items-center justify-center gap-2 rounded-full bg-cream px-5 py-4 text-xs font-bold uppercase tracking-[0.18em] text-ink opacity-0 shadow-soft transition group-hover:translate-y-0 group-hover:opacity-100"
+                >
+                  Add to cart <Plus size={15} />
+                </button>
               </div>
               <div className="mt-5 flex items-start justify-between gap-4">
                 <div>
@@ -221,17 +433,31 @@ export default function Home() {
                     {product.name}
                   </h3>
                   <p className="mt-1 text-sm text-muted">
-                    Minimal apparel · premium everyday fit
+                    {product.description}
                   </p>
                 </div>
-                <p className="font-semibold text-muted">{product.price}</p>
+                <p className="font-semibold text-muted">
+                  {formatPrice(product.price)}
+                </p>
               </div>
             </article>
           ))}
         </div>
+
+        {filteredProducts.length === 0 && (
+          <div className="rounded-[2rem] border border-ink/10 bg-white/60 p-10 text-center">
+            <p className="text-lg font-semibold">No products found.</p>
+            <p className="mt-2 text-muted">
+              Try a different keyword or category filter.
+            </p>
+          </div>
+        )}
       </section>
 
-      <section id="collection" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+      <section
+        id="collection"
+        className="mx-auto max-w-7xl px-5 py-24 lg:px-8"
+      >
         <div className="grid overflow-hidden rounded-[2.5rem] bg-stone lg:grid-cols-[0.9fr_1.1fr]">
           <div className="p-8 sm:p-12 lg:p-16">
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-muted">
@@ -302,13 +528,21 @@ export default function Home() {
               No spam. Just new releases, restocks, lookbook updates, and
               private launch access for people who prefer clean essentials.
             </p>
-            <form className="mt-9 flex max-w-xl flex-col gap-3 sm:flex-row">
+            <form
+              onSubmit={handleNewsletterSubmit}
+              className="mt-9 flex max-w-xl flex-col gap-3 sm:flex-row"
+            >
               <input
                 aria-label="Email address"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 placeholder="Email address"
                 className="min-h-14 flex-1 rounded-full border border-white/15 bg-cream px-6 text-ink outline-none"
               />
-              <button className="rounded-full bg-cream px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-ink">
+              <button
+                type="submit"
+                className="rounded-full bg-cream px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-ink"
+              >
                 Sign up
               </button>
             </form>
@@ -349,6 +583,143 @@ export default function Home() {
           </ul>
         </div>
       </footer>
+
+      <div
+        className={`fixed inset-0 z-[80] bg-ink/40 backdrop-blur-sm transition ${
+          cartOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        onClick={() => setCartOpen(false)}
+      />
+
+      <aside
+        className={`fixed right-0 top-0 z-[90] flex h-full w-full max-w-md flex-col bg-cream shadow-soft transition duration-500 ${
+          cartOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        aria-label="Shopping cart drawer"
+      >
+        <div className="flex items-center justify-between border-b border-ink/10 p-6">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-muted">
+              Shopping Cart
+            </p>
+            <h3 className="mt-2 text-2xl font-bold tracking-[-0.04em]">
+              {cartCount} {cartCount === 1 ? 'item' : 'items'} selected
+            </h3>
+          </div>
+          <button
+            type="button"
+            onClick={() => setCartOpen(false)}
+            className="rounded-full border border-ink/10 p-3"
+            aria-label="Close cart"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="flex-1 space-y-4 overflow-y-auto p-6">
+          {cartItems.length === 0 ? (
+            <div className="rounded-[2rem] border border-ink/10 bg-white/60 p-8 text-center">
+              <ShoppingBag className="mx-auto text-muted" size={34} />
+              <p className="mt-4 text-lg font-semibold">Your cart is empty.</p>
+              <p className="mt-2 text-sm leading-6 text-muted">
+                Add products from the new arrivals section to preview the
+                premium cart drawer experience.
+              </p>
+            </div>
+          ) : (
+            cartItems.map((item) => (
+              <div
+                key={item.id}
+                className="grid grid-cols-[86px_1fr] gap-4 rounded-[1.5rem] border border-ink/10 bg-white/60 p-3"
+              >
+                <div className="h-24 overflow-hidden rounded-[1.2rem] bg-stone">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div>
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h4 className="font-bold tracking-[-0.03em]">
+                        {item.name}
+                      </h4>
+                      <p className="mt-1 text-sm text-muted">
+                        {formatPrice(item.price)} each
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeFromCart(item.id)}
+                      className="rounded-full p-2 text-muted hover:text-ink"
+                      aria-label={`Remove ${item.name}`}
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2 rounded-full border border-ink/10 bg-cream p-1">
+                      <button
+                        type="button"
+                        onClick={() => updateCartQuantity(item.id, -1)}
+                        className="rounded-full p-2"
+                        aria-label={`Decrease ${item.name} quantity`}
+                      >
+                        <Minus size={14} />
+                      </button>
+                      <span className="min-w-6 text-center text-sm font-bold">
+                        {item.quantity}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => updateCartQuantity(item.id, 1)}
+                        className="rounded-full p-2"
+                        aria-label={`Increase ${item.name} quantity`}
+                      >
+                        <Plus size={14} />
+                      </button>
+                    </div>
+                    <p className="font-bold">
+                      {formatPrice(item.price * item.quantity)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        <div className="border-t border-ink/10 p-6">
+          <div className="mb-5 flex items-center justify-between text-lg font-bold">
+            <span>Total</span>
+            <span>{formatPrice(cartTotal)}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() =>
+              showToast(
+                cartCount > 0
+                  ? 'Checkout preview only for this portfolio demo'
+                  : 'Add an item before checkout',
+              )
+            }
+            className="w-full rounded-full bg-ink px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-cream"
+          >
+            Checkout Preview
+          </button>
+          <p className="mt-4 text-center text-xs leading-5 text-muted">
+            Demo cart UI for front-end portfolio presentation. Payment is not
+            connected.
+          </p>
+        </div>
+      </aside>
+
+      {toast && (
+        <div className="fixed bottom-6 left-1/2 z-[100] -translate-x-1/2 rounded-full bg-ink px-6 py-4 text-sm font-semibold text-cream shadow-soft">
+          {toast}
+        </div>
+      )}
     </main>
   );
 }
