@@ -6,29 +6,29 @@ const siteUrl = 'https://xans-landingpage.vercel.app';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Xans — Premium Interactive Clothing Landing Page',
+    default: 'Xans — Minimal Aesthetic Clothing Apparel',
     template: '%s | Xans',
   },
   description:
-    'A premium responsive and interactive landing page concept for Xans, a minimal aesthetic clothing brand with product search, filtering, cart drawer, newsletter validation, and premium UI animations.',
-  applicationName: 'Xans Landing Page',
-  authors: [{ name: 'Jonathan Broqueza' }],
-  creator: 'Jonathan Broqueza',
-  publisher: 'Jonathan Broqueza',
+    'Xans is a minimal aesthetic clothing label built around calm colors, clean silhouettes, comfortable fabrics, and everyday essentials.',
+  applicationName: 'Xans',
+  authors: [{ name: 'Xans Studio' }],
+  creator: 'Xans Studio',
+  publisher: 'Xans Studio',
   keywords: [
     'Xans',
-    'clothing landing page',
-    'premium landing page',
-    'interactive landing page',
-    'front-end development',
-    'fashion website',
-    'Next.js landing page',
-    'Tailwind CSS',
+    'minimal clothing',
+    'aesthetic clothing',
+    'neutral apparel',
+    'everyday essentials',
+    'minimal fashion',
+    'clothing brand',
+    'streetwear basics',
   ],
   openGraph: {
-    title: 'Xans — Premium Interactive Clothing Landing Page',
+    title: 'Xans — Minimal Aesthetic Clothing Apparel',
     description:
-      'A premium responsive clothing brand landing page with product filtering, add-to-cart drawer, newsletter validation, and smooth animations.',
+      'Quiet clothing for people with loud standards. Explore minimal essentials, neutral tones, and clean everyday silhouettes.',
     url: siteUrl,
     siteName: 'Xans',
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: 'Xans premium clothing brand landing page preview',
+        alt: 'Xans minimal aesthetic clothing apparel preview',
       },
     ],
     locale: 'en_US',
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Xans — Premium Interactive Clothing Landing Page',
+    title: 'Xans — Minimal Aesthetic Clothing Apparel',
     description:
-      'A premium responsive clothing brand landing page built with Next.js, Tailwind CSS, and interactive front-end features.',
+      'Minimal essentials, neutral tones, clean silhouettes, and everyday pieces that look premium without trying too hard.',
     images: ['/og-image.svg'],
   },
   robots: {
