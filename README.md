@@ -1,8 +1,8 @@
 # Xans Landing Page
 
-A premium responsive and interactive landing page concept for **Xans**, a minimal aesthetic clothing apparel brand.
+A responsive and interactive landing page for **Xans**, a minimal aesthetic clothing apparel brand.
 
-This project is part of a landing page portfolio focused on modern front-end development, clean UI, responsive layouts, conversion-focused sections, premium interactions, SEO polish, and deployment-ready setup.
+The page presents Xans as a real clothing brand with a polished editorial layout, product browsing, cart drawer interactions, newsletter sign-up, and brand-focused sections.
 
 ## Built with
 
@@ -12,38 +12,34 @@ This project is part of a landing page portfolio focused on modern front-end dev
 - Tailwind CSS
 - Lucide React icons
 
-## Sections
+## Website sections
 
 - Sticky navigation
 - Editorial hero section
 - Moving brand strip
-- Client-ready premium features section
+- The Xans Standard section
 - Lookbook preview
 - Product search and category filtering
-- Product cards with add-to-cart actions
-- Interactive cart drawer
+- Product cards with add-to-bag actions
+- Interactive shopping bag drawer
 - Collection feature section
-- Portfolio case study section
-- Newsletter form with backend API validation
-- Toast notifications
-- Email capture CTA
+- Collection notes section
+- Newsletter form with API validation
 - Footer
 
-## 10/10 premium package features
+## Features
 
-This version represents a premium landing page package with:
-
+- Responsive desktop and mobile layout
 - Working mobile menu
 - Product search
 - Product category filters
-- Add-to-cart drawer UI
-- Cart quantity increase/decrease controls
-- Remove item from cart
-- Checkout preview button
-- Newsletter validation
-- Demo newsletter API route
+- Add-to-bag drawer UI
+- Quantity increase/decrease controls
+- Remove item from bag
+- Newsletter email validation
+- Newsletter API route
 - Toast notifications
-- Premium hover and entrance animations
+- Hover and entrance animations
 - SEO metadata
 - Open Graph and Twitter preview metadata
 - Custom Open Graph preview image
@@ -51,9 +47,6 @@ This version represents a premium landing page package with:
 - Robots route
 - Custom loading state
 - Custom 404 page
-- Responsive desktop and mobile layout
-- Portfolio case study content
-- Deployment-ready project structure
 
 ## Local setup
 
@@ -75,17 +68,4 @@ This project is ready to deploy on Vercel.
 1. Push the latest changes to GitHub.
 2. Import the repo into Vercel.
 3. Use the default Next.js settings.
-4. Deploy and use the live link in your portfolio or Fiverr gig.
-
-## Portfolio purpose
-
-This project can be used as a Fiverr portfolio sample for:
-
-- Premium landing page development
-- Clothing brand websites
-- Front-end development
-- Responsive web design
-- Interactive landing pages
-- SEO-ready landing pages
-- Figma/design-to-code style work
-- Client-ready landing page packages
+4. Deploy the site.
