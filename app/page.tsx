@@ -28,23 +28,15 @@ type CartItem = Product & {
   quantity: number;
 };
 
-const imageFilter = 'h-full w-full object-cover brightness-95 saturate-75';
+const imageFilter = 'h-full w-full object-cover';
 
 const imagery = {
-  hero:
-    'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&w=1200&q=80',
-  rack:
-    'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=900&q=80',
-  tee:
-    'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80',
-  hoodie:
-    'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80',
-  pants:
-    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=80',
-  editorial:
-    'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80',
-  studio:
-    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1000&q=80',
+  hero: '/xans-hero.svg',
+  rack: '/xans-hero.svg',
+  tee: '/xans-product-tee.svg',
+  hoodie: '/xans-product-hoodie.svg',
+  pants: '/xans-product-pants.svg',
+  jacket: '/xans-product-jacket.svg',
 };
 
 const products: Product[] = [
@@ -82,7 +74,7 @@ const products: Product[] = [
     tag: 'Limited',
     category: 'Outerwear',
     description: 'Boxy everyday jacket with quiet luxury styling.',
-    image: imagery.editorial,
+    image: imagery.jacket,
   },
 ];
 
@@ -355,12 +347,12 @@ export default function Home() {
         </div>
 
         <div className="relative min-h-[480px] overflow-hidden rounded-[2rem] bg-stone shadow-soft image-grain sm:min-h-[560px] sm:rounded-[2.5rem] lg:min-h-[620px]">
-          <img src={imagery.hero} alt="Editorial model wearing minimal clothing" className={imageFilter} />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
+          <img src={imagery.hero} alt="Neutral Xans wardrobe essentials" className={imageFilter} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
           <div className="absolute left-5 top-5 rounded-full bg-cream/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] sm:left-6 sm:top-6 sm:px-5 sm:py-3 sm:text-xs sm:tracking-[0.24em]">
             Drop 01
           </div>
-          <div className="absolute bottom-5 left-5 right-5 rounded-[1.6rem] border border-white/25 bg-cream/88 p-5 backdrop-blur-xl sm:bottom-6 sm:left-6 sm:right-6 sm:rounded-[2rem] sm:p-6">
+          <div className="absolute bottom-5 left-5 right-5 rounded-[1.6rem] border border-white/25 bg-cream/90 p-5 backdrop-blur-xl sm:bottom-6 sm:left-6 sm:right-6 sm:rounded-[2rem] sm:p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted sm:text-sm sm:tracking-[0.24em]">
               Essential form
             </p>
@@ -447,13 +439,13 @@ export default function Home() {
 
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
           <div className="relative h-[430px] overflow-hidden rounded-[1.6rem] bg-stone sm:h-[520px] sm:rounded-[2rem] sm:row-span-2">
-            <img src={imagery.editorial} alt="Minimal fashion lookbook outfit" className={imageFilter} />
+            <img src={imagery.hero} alt="Neutral wardrobe styling" className={imageFilter} />
           </div>
           <div className="relative h-[220px] overflow-hidden rounded-[1.6rem] bg-sand sm:h-[250px] sm:rounded-[2rem]">
-            <img src={imagery.rack} alt="Neutral clothing rack detail" className={imageFilter} />
+            <img src={imagery.tee} alt="Core tee visual" className={imageFilter} />
           </div>
           <div className="relative h-[220px] overflow-hidden rounded-[1.6rem] bg-taupe sm:h-[250px] sm:rounded-[2rem]">
-            <img src={imagery.tee} alt="Minimal clothing detail" className={imageFilter} />
+            <img src={imagery.hoodie} alt="Sand hoodie visual" className={imageFilter} />
           </div>
         </div>
       </section>
@@ -590,10 +582,10 @@ export default function Home() {
 
           <div className="grid min-h-[460px] grid-cols-2 gap-3 p-4 sm:min-h-[620px] sm:gap-4 sm:p-5">
             <div className="relative overflow-hidden rounded-[1.5rem] bg-sand sm:rounded-[2rem]">
-              <img src={imagery.rack} alt="Neutral Xans wardrobe rack" className={imageFilter} />
+              <img src={imagery.pants} alt="Neutral pants visual" className={imageFilter} />
             </div>
             <div className="relative mt-10 overflow-hidden rounded-[1.5rem] bg-ink sm:mt-16 sm:rounded-[2rem]">
-              <img src={imagery.editorial} alt="Minimal fashion campaign" className={imageFilter} />
+              <img src={imagery.jacket} alt="Box jacket visual" className={imageFilter} />
             </div>
           </div>
         </div>
@@ -652,7 +644,7 @@ export default function Home() {
       <section id="story" className="bg-ink px-5 py-20 text-cream lg:px-8 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-12">
           <div className="relative h-[360px] overflow-hidden rounded-[1.6rem] bg-sand sm:h-[420px] sm:rounded-[2rem]">
-            <img src={imagery.studio} alt="Premium neutral clothing editorial" className={imageFilter} />
+            <img src={imagery.hero} alt="Neutral wardrobe editorial" className={imageFilter} />
           </div>
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-sand">
