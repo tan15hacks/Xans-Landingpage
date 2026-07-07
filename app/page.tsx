@@ -80,6 +80,43 @@ const values = [
   'Made for repeat wear',
 ];
 
+const premiumFeatures = [
+  {
+    title: 'Conversion-ready structure',
+    description:
+      'Hero, proof points, visual storytelling, product highlights, offer section, FAQ-style messaging, and strong CTAs.',
+  },
+  {
+    title: 'Interactive front-end features',
+    description:
+      'Search, category filters, cart drawer, quantity controls, toast notifications, mobile menu, and validated forms.',
+  },
+  {
+    title: 'Premium brand presentation',
+    description:
+      'Editorial imagery, polished spacing, refined typography, hover states, soft shadows, and luxury-inspired neutral styling.',
+  },
+  {
+    title: 'Deployment-ready setup',
+    description:
+      'SEO metadata, Open Graph preview, sitemap, robots route, custom loading state, custom 404 page, and clean source code.',
+  },
+];
+
+const caseStudyStats = [
+  { label: 'Responsive sections', value: '10+' },
+  { label: 'Interactive features', value: '8' },
+  { label: 'Target package', value: 'Premium' },
+  { label: 'Build focus', value: 'Conversion' },
+];
+
+const projectProcess = [
+  'Clarify brand direction, target audience, and page goal.',
+  'Design a polished visual structure with premium spacing and hierarchy.',
+  'Build a responsive front-end with useful interactions and animations.',
+  'Prepare SEO, social preview, deployment files, and portfolio-ready docs.',
+];
+
 function formatPrice(value: number) {
   return `$${value.toFixed(0)}`;
 }
@@ -156,7 +193,7 @@ export default function Home() {
     showToast('Item removed from cart');
   }
 
-  function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
@@ -166,8 +203,26 @@ export default function Home() {
       return;
     }
 
-    setEmail('');
-    showToast('You are on the Xans drop list');
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        showToast(data.message ?? 'Please try again.');
+        return;
+      }
+
+      setEmail('');
+      showToast(data.message ?? 'You are on the Xans drop list');
+    } catch {
+      showToast('Newsletter demo is temporarily unavailable');
+    }
   }
 
   function closeMobileMenu() {
@@ -184,8 +239,9 @@ export default function Home() {
 
           <div className="hidden items-center gap-10 text-xs font-semibold uppercase tracking-[0.18em] text-muted lg:flex">
             <a href="#new">New Arrivals</a>
+            <a href="#features">Features</a>
             <a href="#lookbook">Lookbook</a>
-            <a href="#collection">Collection</a>
+            <a href="#case-study">Case Study</a>
             <a href="#story">Story</a>
           </div>
 
@@ -226,11 +282,14 @@ export default function Home() {
               <a href="#new" onClick={closeMobileMenu}>
                 New Arrivals
               </a>
+              <a href="#features" onClick={closeMobileMenu}>
+                Features
+              </a>
               <a href="#lookbook" onClick={closeMobileMenu}>
                 Lookbook
               </a>
-              <a href="#collection" onClick={closeMobileMenu}>
-                Collection
+              <a href="#case-study" onClick={closeMobileMenu}>
+                Case Study
               </a>
               <a href="#story" onClick={closeMobileMenu}>
                 Story
@@ -269,10 +328,10 @@ export default function Home() {
               Shop the drop <ArrowRight size={16} />
             </a>
             <a
-              href="#lookbook"
+              href="#case-study"
               className="inline-flex items-center justify-center rounded-full border border-ink px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] transition hover:-translate-y-0.5"
             >
-              View lookbook
+              View case study
             </a>
           </div>
         </div>
@@ -285,15 +344,15 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
           <div className="absolute left-6 top-6 rounded-full bg-cream/90 px-5 py-3 text-xs font-bold uppercase tracking-[0.24em]">
-            Drop 01
+            10/10 Premium Demo
           </div>
           <div className="absolute bottom-6 left-6 right-6 rounded-[2rem] border border-white/25 bg-cream/85 p-6 backdrop-blur-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-muted">
-              Essential form
+              Client-ready package
             </p>
             <div className="mt-3 flex items-end justify-between gap-6">
               <h2 className="text-3xl font-bold tracking-[-0.04em]">
-                Soft silhouettes. Neutral impact.
+                Design, interactions, SEO, backend demo, deployment prep.
               </h2>
               <Sparkles className="hidden text-ink sm:block" size={28} />
             </div>
@@ -305,14 +364,53 @@ export default function Home() {
         <div className="marquee flex w-[200%] gap-12 whitespace-nowrap text-lg font-semibold uppercase tracking-[0.35em] opacity-90">
           <span>Interactive Cart</span>
           <span>Product Search</span>
-          <span>Email Validation</span>
-          <span>Mobile Menu</span>
-          <span>Premium Animations</span>
+          <span>Email API</span>
+          <span>SEO Metadata</span>
+          <span>Custom 404</span>
+          <span>Open Graph</span>
           <span>Interactive Cart</span>
           <span>Product Search</span>
-          <span>Email Validation</span>
-          <span>Mobile Menu</span>
-          <span>Premium Animations</span>
+          <span>Email API</span>
+          <span>SEO Metadata</span>
+          <span>Custom 404</span>
+          <span>Open Graph</span>
+        </div>
+      </section>
+
+      <section id="features" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+        <div className="mb-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-muted">
+              Premium Package
+            </p>
+            <h2 className="mt-4 text-5xl font-bold leading-tight tracking-[-0.06em]">
+              Built like a client-ready landing page, not just a pretty mockup.
+            </h2>
+          </div>
+          <p className="text-lg leading-8 text-muted">
+            This sample demonstrates what your premium Fiverr offer can include:
+            polished design, conversion structure, real front-end interactions,
+            SEO setup, social preview, and deployment-ready files.
+          </p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {premiumFeatures.map((feature, index) => (
+            <article
+              key={feature.title}
+              className="rounded-[2rem] border border-ink/10 bg-white/55 p-7 shadow-sm transition hover:-translate-y-2 hover:shadow-soft"
+            >
+              <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-ink text-cream">
+                {String(index + 1).padStart(2, '0')}
+              </div>
+              <h3 className="text-xl font-bold tracking-[-0.04em]">
+                {feature.title}
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-muted">
+                {feature.description}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -504,6 +602,56 @@ export default function Home() {
                 className="h-full w-full object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="case-study" className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+        <div className="overflow-hidden rounded-[2.5rem] bg-ink text-cream shadow-soft">
+          <div className="grid gap-10 p-8 sm:p-12 lg:grid-cols-[0.9fr_1.1fr] lg:p-16">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-sand">
+                Portfolio Case Study
+              </p>
+              <h2 className="mt-5 text-5xl font-bold leading-tight tracking-[-0.06em]">
+                From brand idea to premium interactive landing page.
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-sand">
+                Xans was created as a portfolio-grade example of a client-ready
+                premium landing page package for fashion, product, app, SaaS, or
+                brand launches.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {caseStudyStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-[2rem] border border-cream/10 bg-cream/10 p-6"
+                >
+                  <p className="text-4xl font-bold tracking-[-0.06em]">
+                    {stat.value}
+                  </p>
+                  <p className="mt-3 text-sm font-semibold uppercase tracking-[0.16em] text-sand">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid border-t border-cream/10 lg:grid-cols-4">
+            {projectProcess.map((step, index) => (
+              <div
+                key={step}
+                className="border-cream/10 p-8 lg:border-r last:lg:border-r-0"
+              >
+                <p className="text-sm font-bold uppercase tracking-[0.22em] text-sand">
+                  Step {index + 1}
+                </p>
+                <p className="mt-4 leading-7 text-cream/90">{step}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
