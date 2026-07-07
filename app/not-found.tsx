@@ -16,8 +16,8 @@ export default function NotFound() {
             This page slipped out of the collection.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-sand">
-            The page you are looking for does not exist, but the Xans premium
-            landing page is still waiting for you.
+            The page you are looking for does not exist, but the latest Xans
+            collection is still waiting for you.
           </p>
           <Link
             href="/"
