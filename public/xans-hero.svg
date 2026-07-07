@@ -1,0 +1,20 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#E8E4DB"/>
+  <rect x="88" y="72" width="1024" height="756" rx="72" fill="#F7F4EC"/>
+  <circle cx="930" cy="150" r="220" fill="#D8CDBD" opacity="0.55"/>
+  <circle cx="240" cy="760" r="250" fill="#D8CDBD" opacity="0.35"/>
+  <rect x="260" y="210" width="680" height="26" rx="13" fill="#111111" opacity="0.82"/>
+  <rect x="300" y="236" width="10" height="420" rx="5" fill="#111111" opacity="0.7"/>
+  <rect x="890" y="236" width="10" height="420" rx="5" fill="#111111" opacity="0.7"/>
+  <g opacity="0.98">
+    <path d="M430 246c-80 46-114 137-92 242l33 160h178l-29-180 52-222H430Z" fill="#D8CDBD"/>
+    <path d="M612 247c-60 48-95 119-92 212l7 189h180l-24-190 34-211H612Z" fill="#C8BBAA"/>
+    <path d="M752 246c-53 65-75 135-57 216l40 186h160l-40-194 20-208H752Z" fill="#AFA293"/>
+    <path d="M402 250c41 22 81 22 120 0" stroke="#F7F4EC" stroke-width="18" stroke-linecap="round"/>
+    <path d="M604 250c43 21 78 21 111 0" stroke="#F7F4EC" stroke-width="18" stroke-linecap="round"/>
+    <path d="M742 250c44 21 84 21 124 0" stroke="#F7F4EC" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <text x="130" y="135" fill="#111111" font-family="Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="10">XANS / DROP 01</text>
+  <text x="130" y="770" fill="#111111" font-family="Arial, sans-serif" font-size="54" font-weight="800" letter-spacing="-2">Neutral wardrobe essentials</text>
+  <text x="132" y="815" fill="#6F6A61" font-family="Arial, sans-serif" font-size="22">Cream, stone, sand, washed black.</text>
+</svg>
