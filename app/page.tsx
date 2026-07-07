@@ -28,6 +28,25 @@ type CartItem = Product & {
   quantity: number;
 };
 
+const imageFilter = 'h-full w-full object-cover brightness-95 saturate-75';
+
+const imagery = {
+  hero:
+    'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&w=1200&q=80',
+  rack:
+    'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=900&q=80',
+  tee:
+    'https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80',
+  hoodie:
+    'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80',
+  pants:
+    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=80',
+  editorial:
+    'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80',
+  studio:
+    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1000&q=80',
+};
+
 const products: Product[] = [
   {
     id: 1,
@@ -36,8 +55,7 @@ const products: Product[] = [
     tag: 'New',
     category: 'Tees',
     description: 'Heavy-soft cotton tee with a relaxed premium fit.',
-    image:
-      'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=900&q=80',
+    image: imagery.tee,
   },
   {
     id: 2,
@@ -46,8 +64,7 @@ const products: Product[] = [
     tag: 'Drop',
     category: 'Hoodies',
     description: 'Warm neutral hoodie made for clean everyday layering.',
-    image:
-      'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80',
+    image: imagery.hoodie,
   },
   {
     id: 3,
@@ -56,8 +73,7 @@ const products: Product[] = [
     tag: 'Best',
     category: 'Pants',
     description: 'Soft structured pants with a minimal utility shape.',
-    image:
-      'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=80',
+    image: imagery.pants,
   },
   {
     id: 4,
@@ -66,8 +82,7 @@ const products: Product[] = [
     tag: 'Limited',
     category: 'Outerwear',
     description: 'Boxy everyday jacket with quiet luxury styling.',
-    image:
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
+    image: imagery.editorial,
   },
 ];
 
@@ -340,11 +355,7 @@ export default function Home() {
         </div>
 
         <div className="relative min-h-[480px] overflow-hidden rounded-[2rem] bg-stone shadow-soft image-grain sm:min-h-[560px] sm:rounded-[2.5rem] lg:min-h-[620px]">
-          <img
-            src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&w=1200&q=80"
-            alt="Editorial model wearing minimal clothing"
-            className="h-full w-full object-cover"
-          />
+          <img src={imagery.hero} alt="Editorial model wearing minimal clothing" className={imageFilter} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
           <div className="absolute left-5 top-5 rounded-full bg-cream/90 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] sm:left-6 sm:top-6 sm:px-5 sm:py-3 sm:text-xs sm:tracking-[0.24em]">
             Drop 01
@@ -436,25 +447,13 @@ export default function Home() {
 
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
           <div className="relative h-[430px] overflow-hidden rounded-[1.6rem] bg-stone sm:h-[520px] sm:rounded-[2rem] sm:row-span-2">
-            <img
-              src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80"
-              alt="Minimal fashion lookbook outfit"
-              className="h-full w-full object-cover"
-            />
+            <img src={imagery.editorial} alt="Minimal fashion lookbook outfit" className={imageFilter} />
           </div>
           <div className="relative h-[220px] overflow-hidden rounded-[1.6rem] bg-sand sm:h-[250px] sm:rounded-[2rem]">
-            <img
-              src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=900&q=80"
-              alt="Clothing fabric detail"
-              className="h-full w-full object-cover"
-            />
+            <img src={imagery.rack} alt="Neutral clothing rack detail" className={imageFilter} />
           </div>
           <div className="relative h-[220px] overflow-hidden rounded-[1.6rem] bg-taupe sm:h-[250px] sm:rounded-[2rem]">
-            <img
-              src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80"
-              alt="Streetwear lifestyle pose"
-              className="h-full w-full object-cover"
-            />
+            <img src={imagery.tee} alt="Minimal clothing detail" className={imageFilter} />
           </div>
         </div>
       </section>
@@ -485,7 +484,7 @@ export default function Home() {
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Search products..."
-              className="h-13 w-full rounded-full border border-ink/10 bg-cream py-4 pl-12 pr-5 text-sm outline-none transition focus:border-ink/30 sm:h-14"
+              className="h-14 w-full rounded-full border border-ink/10 bg-cream pl-12 pr-5 text-sm outline-none transition focus:border-ink/30"
             />
           </label>
 
@@ -514,7 +513,7 @@ export default function Home() {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  className={`${imageFilter} transition duration-700 group-hover:scale-105`}
                 />
                 <span className="absolute left-4 top-4 rounded-full bg-cream px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.18em] sm:left-5 sm:top-5 sm:px-4 sm:text-xs sm:tracking-[0.2em]">
                   {product.tag}
@@ -591,18 +590,10 @@ export default function Home() {
 
           <div className="grid min-h-[460px] grid-cols-2 gap-3 p-4 sm:min-h-[620px] sm:gap-4 sm:p-5">
             <div className="relative overflow-hidden rounded-[1.5rem] bg-sand sm:rounded-[2rem]">
-              <img
-                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"
-                alt="Xans campaign outfit"
-                className="h-full w-full object-cover"
-              />
+              <img src={imagery.rack} alt="Neutral Xans wardrobe rack" className={imageFilter} />
             </div>
             <div className="relative mt-10 overflow-hidden rounded-[1.5rem] bg-ink sm:mt-16 sm:rounded-[2rem]">
-              <img
-                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80"
-                alt="Minimal fashion campaign"
-                className="h-full w-full object-cover"
-              />
+              <img src={imagery.editorial} alt="Minimal fashion campaign" className={imageFilter} />
             </div>
           </div>
         </div>
@@ -661,11 +652,7 @@ export default function Home() {
       <section id="story" className="bg-ink px-5 py-20 text-cream lg:px-8 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-12">
           <div className="relative h-[360px] overflow-hidden rounded-[1.6rem] bg-sand sm:h-[420px] sm:rounded-[2rem]">
-            <img
-              src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1000&q=80"
-              alt="Premium neutral clothing editorial"
-              className="h-full w-full object-cover opacity-90"
-            />
+            <img src={imagery.studio} alt="Premium neutral clothing editorial" className={imageFilter} />
           </div>
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-sand">
@@ -783,11 +770,7 @@ export default function Home() {
                 className="grid grid-cols-[86px_1fr] gap-4 rounded-[1.5rem] border border-ink/10 bg-white/60 p-3"
               >
                 <div className="h-24 overflow-hidden rounded-[1.2rem] bg-stone">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="h-full w-full object-cover"
-                  />
+                  <img src={item.image} alt={item.name} className={imageFilter} />
                 </div>
                 <div>
                   <div className="flex items-start justify-between gap-3">
